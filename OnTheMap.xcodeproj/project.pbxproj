@@ -21,6 +21,7 @@
 		096D245A2611FABD00AA36A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 096D24592611FABD00AA36A6 /* Assets.xcassets */; };
 		096D245D2611FABD00AA36A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 096D245B2611FABD00AA36A6 /* LaunchScreen.storyboard */; };
 		096D24692611FB2F00AA36A6 /* OTMClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096D24682611FB2F00AA36A6 /* OTMClient.swift */; };
+		097A18F7262DF52B00A8601D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097A18F6262DF52B00A8601D /* Constants.swift */; };
 		09C3AEEA261342F00080362B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C3AEE9261342F00080362B /* MapViewController.swift */; };
 		09C3AEED2613446D0080362B /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C3AEEC2613446D0080362B /* StudentInformation.swift */; };
 		09C3AEF02613479D0080362B /* OTMStudentLocationResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C3AEEF2613479D0080362B /* OTMStudentLocationResults.swift */; };
@@ -42,6 +43,7 @@
 		096D245C2611FABD00AA36A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		096D245E2611FABD00AA36A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		096D24682611FB2F00AA36A6 /* OTMClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTMClient.swift; sourceTree = "<group>"; };
+		097A18F6262DF52B00A8601D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		09C3AEE9261342F00080362B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		09C3AEEC2613446D0080362B /* StudentInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		09C3AEEF2613479D0080362B /* OTMStudentLocationResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTMStudentLocationResults.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 		096D244F2611FABD00AA36A6 /* OnTheMap */ = {
 			isa = PBXGroup;
 			children = (
+				097A18F5262DF51100A8601D /* Utilities */,
 				096D24672611FAE400AA36A6 /* Model */,
 				096D24662611FADC00AA36A6 /* View */,
 				096D24652611FAD100AA36A6 /* Controller */,
@@ -121,6 +124,14 @@
 				091508E4261EF5940074F86E /* User.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		097A18F5262DF51100A8601D /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				097A18F6262DF52B00A8601D /* Constants.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,6 +221,7 @@
 				096D24532611FABD00AA36A6 /* SceneDelegate.swift in Sources */,
 				0928880A2612463900C504D1 /* OTMResponse.swift in Sources */,
 				09C3AEEA261342F00080362B /* MapViewController.swift in Sources */,
+				097A18F7262DF52B00A8601D /* Constants.swift in Sources */,
 				0965245E2614847D00ACA67C /* ListViewController.swift in Sources */,
 				09C3AEF02613479D0080362B /* OTMStudentLocationResults.swift in Sources */,
 			);

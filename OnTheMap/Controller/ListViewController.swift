@@ -32,6 +32,7 @@ class ListViewController: UIViewController {
             }
             
             self.listOfStudentLocation = studentLocations
+            
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }

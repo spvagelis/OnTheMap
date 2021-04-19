@@ -58,7 +58,7 @@ class InformationPostingViewController: UIViewController {
         self.mapView.removeAnnotations(self.mapView.annotations)
         self.mapView.addAnnotation(point)
         
-        let viewRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 2000, longitudinalMeters: 2000)
+        let viewRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: Constants.latitudinalMeters, longitudinalMeters: Constants.longitudinalMeters)
         self.mapView.setRegion(viewRegion, animated: true)
         
     }

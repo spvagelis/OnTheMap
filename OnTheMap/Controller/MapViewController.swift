@@ -17,8 +17,6 @@ class MapViewController: UIViewController {
     @IBOutlet weak var refreshBarButton: UIBarButtonItem!
     
     var listOfStudentsLocation = [StudentInformation]()
-    var latitude = CLLocationDegrees()
-    var longitude = CLLocationDegrees()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +41,7 @@ class MapViewController: UIViewController {
 
             self.showFailToGetStudentLocation(message: "We can't download the students location.")
             return
+            
         } else {
 
             self.listOfStudentsLocation = studentsLocation
