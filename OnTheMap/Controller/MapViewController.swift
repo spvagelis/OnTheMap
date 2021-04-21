@@ -38,8 +38,10 @@ class MapViewController: UIViewController {
     func handleGetStudentsLocation(studentsLocation: [StudentInformation], error: Error?) {
        
         if error != nil {
-
-            self.showFailToGetStudentLocation(message: "We can't download the students location.")
+            DispatchQueue.main.async {
+                self.showFailToGetStudentLocation(message: error?.localizedDescription ?? "")
+            }
+            
             return
             
         } else {
@@ -67,6 +69,7 @@ class MapViewController: UIViewController {
 
             }
             DispatchQueue.main.async {
+                self.mapView.removeAnnotations(self.mapView.annotations)
                 self.mapView.addAnnotations(annotations)
             }
         }
@@ -74,10 +77,11 @@ class MapViewController: UIViewController {
     
     func showFailToGetStudentLocation(message: String) {
         
-        let alert = UIAlertController(title: "Error to get Students Location", message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Error with Student Location", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         
-        show(alert, sender: nil)
+        present(alert, animated: true, completion: nil)
+        
     }
     
     @IBAction func refreshButtonPressed(_ sender: UIBarButtonItem) {
@@ -86,7 +90,7 @@ class MapViewController: UIViewController {
         
     }
     
-    
+        
     @IBAction func logOutButtonPressed(_ sender: UIBarButtonItem) {
         
         OTMClient.logout {

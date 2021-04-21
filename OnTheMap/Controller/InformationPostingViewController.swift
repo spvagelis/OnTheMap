@@ -55,12 +55,16 @@ class InformationPostingViewController: UIViewController {
         
         point.coordinate = location.coordinate
         
-        self.mapView.removeAnnotations(self.mapView.annotations)
-        self.mapView.addAnnotation(point)
+        DispatchQueue.main.async {
+            self.mapView.removeAnnotations(self.mapView.annotations)
+            self.mapView.addAnnotation(point)
+        }
         
         let viewRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: Constants.latitudinalMeters, longitudinalMeters: Constants.longitudinalMeters)
-        self.mapView.setRegion(viewRegion, animated: true)
         
+        DispatchQueue.main.async {
+            self.mapView.setRegion(viewRegion, animated: true)
+        }
     }
     
     func updatePlaceMark(to address: String) {
@@ -75,11 +79,18 @@ class InformationPostingViewController: UIViewController {
                 
                 let alert = UIAlertController(title: "The Location doesn't exist", message: "Sorry i can't find that location, try again please.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (alertAction) in
-                    self.mapView.isHidden = true
-                    self.finishButton.isHidden = true
+                    DispatchQueue.main.async {
+                        self.mapView.isHidden = true
+                        self.finishButton.isHidden = true
+                    }
                 }))
-                self.present(alert, animated: true, completion: nil)
+                
+                DispatchQueue.main.async {
+                    self.present(alert, animated: true, completion: nil)
+                }
+    
                 return
+                
             } else {
                 guard let placemark = placemarks?.first, let location = placemark.location else { return }
                 self.latitude = location.coordinate.latitude
@@ -95,24 +106,28 @@ class InformationPostingViewController: UIViewController {
         
         let address = addLocationTextField.text
         if let address = address, address != "", addLinkTextField.text != "" {
-            self.mapView.isHidden = false
-            self.finishButton.isHidden = false
+            
+            DispatchQueue.main.async {
+                self.mapView.isHidden = false
+                self.finishButton.isHidden = false
+            }
+            
             self.updatePlaceMark(to: address)
+            
         } else {
             
             let alert = UIAlertController(title: "", message: "Please don't let your location and your link empty", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            
+            DispatchQueue.main.async {
+                self.present(alert, animated: true, completion: nil)
+            }
         }
     }
     
     func setToGeocoding(_ isGeocoding: Bool) {
         
-        if isGeocoding {
-            activityIndicator.startAnimating()
-        } else {
-            activityIndicator.stopAnimating()
-        }
+        isGeocoding ? self.activityIndicator.startAnimating() : self.activityIndicator.stopAnimating()
         
         addLocationTextField.isEnabled = !isGeocoding
         addLinkTextField.isEnabled = !isGeocoding
@@ -130,12 +145,18 @@ class InformationPostingViewController: UIViewController {
             self.addLocationTextField.isHidden = false
             self.findLocationButton.isHidden = false
         }))
-        present(alert, animated: true, completion: nil)
+        
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+        
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
         
-        dismiss(animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.dismiss(animated: true, completion: nil)
+        }
         
     }
     
@@ -149,7 +170,7 @@ class InformationPostingViewController: UIViewController {
                 
                 if error != nil {
                     DispatchQueue.main.async {
-                        self.showPostFailure(message: "The data couldn't upload to server, please try again.")
+                        self.showPostFailure(message: error?.localizedDescription ?? "")
                     }
                 }
                 

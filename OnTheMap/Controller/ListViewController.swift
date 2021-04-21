@@ -26,7 +26,10 @@ class ListViewController: UIViewController {
         OTMClient.getStudentLocation { (studentLocations, error) in
             if error != nil {
                 
-                self.showFailToGetStudentLocation(message: "We can't download the Student Locations.")
+                DispatchQueue.main.async {
+                    self.showFailToGetStudentLocation(message: error?.localizedDescription ?? "")
+                }
+                
                 return
                 
             }
@@ -44,7 +47,8 @@ class ListViewController: UIViewController {
         let alert = UIAlertController(title: "Error with Student Location", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         
-        show(alert, sender: nil)
+        present(alert, animated: true, completion: nil)
+        
     }
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
@@ -75,7 +79,10 @@ class ListViewController: UIViewController {
         OTMClient.getStudentLocation { (studentLocations, error) in
             if error != nil {
                 
-                self.showFailToGetStudentLocation(message: "We can't download the Student Locations.")
+                DispatchQueue.main.async {
+                    self.showFailToGetStudentLocation(message: error?.localizedDescription ?? "")
+                }
+                
                 return
                 
             }

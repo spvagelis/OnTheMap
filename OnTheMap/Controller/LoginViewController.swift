@@ -47,12 +47,13 @@ class LoginViewController: UIViewController {
         OTMClient.login(username: emailTextField.text!, password: passwordTextField.text!) { (success, error) in
             
             self.setLoggingIn(false)
+            
             if success {
                 self.performSegue(withIdentifier: "completeLogin", sender: nil)
             } else {
                 
-                    self.showLoginFailure(message: "Account not found or invalid credentials.")
-
+                self.showLoginFailure(message: error!.localizedDescription)
+                
             }
         }
     }
@@ -63,16 +64,13 @@ class LoginViewController: UIViewController {
         let alertVC = UIAlertController(title: "Login Failed", message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
        
-        show(alertVC, sender: nil)
+        present(alertVC, animated: true, completion: nil)
     }
     
     func setLoggingIn(_ loggingIn: Bool) {
         
-        if loggingIn {
-            activityIndicator.startAnimating()
-        } else {
-            activityIndicator.stopAnimating()
-        }
+        loggingIn ? self.activityIndicator.startAnimating() : self.activityIndicator.stopAnimating()
+
         emailTextField.isEnabled = !loggingIn
         passwordTextField.isEnabled = !loggingIn
         loginButton.isEnabled = !loggingIn
@@ -89,7 +87,7 @@ extension LoginViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-
+        
         textField.text = ""
         return true
         

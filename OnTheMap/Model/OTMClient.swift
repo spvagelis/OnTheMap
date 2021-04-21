@@ -29,7 +29,7 @@ class OTMClient {
             case .login:
                 return "https://onthemap-api.udacity.com/v1/session"
             case .getStudentLocations:
-                return "https://onthemap-api.udacity.com/v1/StudentLocation?order=-updatedAt"
+                return "https://onthemap-api.udacity.com/v1/StudentLocation?order=-updatedAt&limit=100"
             case .postStudentLocation:
                 return "https://onthemap-api.udacity.com/v1/StudentLocation"
             case .getPublicUserData:
@@ -56,7 +56,6 @@ class OTMClient {
             }
             
             let range = 5..<data.count
-            //let range = Range(5..<data!.count)
             let newData = data.subdata(in: range)
             
             let decoder = JSONDecoder()
@@ -69,7 +68,9 @@ class OTMClient {
                     completion(true, nil)
                 }
             } catch {
-                completion(false, error)
+                DispatchQueue.main.async {
+                    completion(false, error)
+                }
             }
         }
         
@@ -110,7 +111,9 @@ class OTMClient {
                 }
                 
             } catch {
-                completion(false, error)
+                DispatchQueue.main.async {
+                    completion(false, error)
+                }
             }
         }
         task.resume()
@@ -120,15 +123,15 @@ class OTMClient {
         
         let task = URLSession.shared.dataTask(with: Endpoints.getStudentLocations.url) { (data, response, error) in
             guard let data = data else {
+                
                 DispatchQueue.main.async {
-                    
                     completion([], error)
-                    
                 }
     
                 return
                 
             }
+            
             let decoder = JSONDecoder()
             
             do {
@@ -147,7 +150,6 @@ class OTMClient {
         }
         
         task.resume()
-        
     }
     
     class func login(username: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
@@ -160,6 +162,13 @@ class OTMClient {
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data, response, error) in
             if error != nil {
+                
+                DispatchQueue.main.async {
+                    
+                    completion(false, error)
+                    
+                }
+                
                 return
             }
             
@@ -211,7 +220,7 @@ class OTMClient {
         }
         let session = URLSession.shared
         let task = session.dataTask(with: request) { data, response, error in
-          if error != nil { // Handle error…
+          if error != nil {
               return
           }
           
@@ -224,5 +233,4 @@ class OTMClient {
         }
         task.resume()
     }
-    
 }

@@ -287,11 +287,11 @@
             </objects>
             <point key="canvasLocation" x="3255.072463768116" y="308.70535714285711"/>
         </scene>
-        <!--Map-->
+        <!--Navigation Controller-->
         <scene sceneID="lKM-ji-E9D">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MMr-r9-vDW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" selectedImage="map" id="hzW-sd-Z6y"/>
+                    <tabBarItem key="tabBarItem" title="" image="map" catalog="system" selectedImage="map" id="hzW-sd-Z6y"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="f9o-7s-fkm">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
@@ -324,11 +324,11 @@
             </objects>
             <point key="canvasLocation" x="88" y="-55"/>
         </scene>
-        <!--List-->
+        <!--Navigation Controller-->
         <scene sceneID="7rx-bx-8Db">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0Qw-O4-ian" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="List" image="tablecells" catalog="system" id="be3-FL-HHR"/>
+                    <tabBarItem key="tabBarItem" title="" image="tablecells" catalog="system" id="be3-FL-HHR"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zZW-pv-FVb">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
